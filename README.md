@@ -7,3 +7,5 @@ as it happens I have quite a few of them lying around.
 I already have a lot of code for Arduino and now it's time I write a driver to connect the module direclty to a RPi (2 model B) using node.js
 
 The final goal is to connect a network of NRF905 modules to the internet using a REST API.
+
+Current status: 3/7/2016 - I can write and read the configuration register
