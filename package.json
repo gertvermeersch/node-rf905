@@ -1,0 +1,29 @@
+{
+  "name": "rf905",
+  "version": "1.0.0",
+  "description": "Node.js driver for RF905 module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gertvermeersch/node-rf905.git"
+  },
+  "keywords": [
+    "node",
+    "rf905",
+    "homeautomation",
+    "iot"
+  ],
+  "author": "Gert Vermeersch",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/gertvermeersch/node-rf905/issues"
+  },
+  "homepage": "https://github.com/gertvermeersch/node-rf905#readme",
+  "dependencies": {
+    "rpio": "^0.9.11",
+    "sleep": "^3.0.1"
+  }
+}
