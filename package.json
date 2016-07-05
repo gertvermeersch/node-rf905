@@ -1,10 +1,10 @@
 {
-  "name": "rf905",
-  "version": "1.0.0",
-  "description": "Node.js driver for RF905 module",
+  "name": "nrf905",
+  "version": "0.0.1",
+  "description": "Node.js driver for nRF905 module",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "test.js"
   },
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
   },
   "keywords": [
     "node",
-    "rf905",
+    "nrf905",
     "homeautomation",
     "iot"
   ],
@@ -25,5 +25,8 @@
   "dependencies": {
     "rpio": "^0.9.11",
     "sleep": "^3.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.2"
   }
 }
