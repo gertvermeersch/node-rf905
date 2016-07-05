@@ -1,6 +1,6 @@
 {
   "name": "nrf905",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Node.js driver for nRF905 module",
   "main": "app.js",
   "scripts": {
