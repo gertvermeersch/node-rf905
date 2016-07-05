@@ -55,9 +55,9 @@ Nrf905.prototype.init = function() {
     rpio.open(CD, rpio.INPUT);
 
 
-    setInterval(function() {
-        console.log("AM: " + rpio.read(AM) + " DR: " + rpio.read(DR) + " CD: " + rpio.read(CD));
-    }, 5000);
+    // setInterval(function() {
+    //     console.log("AM: " + rpio.read(AM) + " DR: " + rpio.read(DR) + " CD: " + rpio.read(CD));
+    // }, 50);
 
     var configArray = [0xCE, 0x0D, 0x44, 0x20, 0x20, 0x00, 0x00, 0x00, 0x00, 0x58];
 
