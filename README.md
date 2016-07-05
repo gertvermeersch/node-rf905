@@ -4,6 +4,7 @@ Node.js driver for RF905 module
 The NRF905 isn't a popular module for IoT applications: It's not the most efficient module
 and there's a lot more code to find for other modules like the NRF24L01. But the NRF905 offers superior range and
 as it happens I have quite a few of them lying around.
+Note that you have to run this as root as the RPIO package requires it to access the SPI.
 
 # Usage
 
