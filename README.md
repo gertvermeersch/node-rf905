@@ -8,9 +8,8 @@ as it happens I have quite a few of them lying around.
 # Usage
 
 ## Include in code
-`var Nrf905 = require('./nrf905.js');
-
-var radio = new Nrf905();`
+`var Nrf905 = require('./nrf905.js');`
+`var radio = new Nrf905();`
 
 ## Initialize module
 `radio.init();`
