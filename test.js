@@ -11,6 +11,6 @@ radio.attachReceivedCallback(function(err, payload) {
   console.log("received: " + payload);
 });
 
-//radio.startReceiveMode();
-var i = 0;
-setInterval(function() {radio.sendPacket([0x66, 0x66, 0x66, 0x66], "AAAAthis is packet " + i++ + "            ");}, 1000);
+radio.startReceiveMode();
+ var i = 0;
+// setInterval(function() {radio.sendPacket([0x66, 0x66, 0x66, 0x66], "AAAAthis is packet " + i++ + "            ");}, 5000);
