@@ -124,19 +124,19 @@ Nrf905.prototype.startReceiveMode = function() {
 
     rpio.write(TRX_CE, 1);
 
-    // setInterval(function() {
-    //   if (rpio.read(DR) === 1) {
-    //     if (rpio.read(AM) === 1) {
-    //         self.receivePacket();
-    //     }
-    //   }
-    // },50);
+    setInterval(function() {
+      if (rpio.read(DR) === 1) {
+        if (rpio.read(AM) === 1) {
+            self.receivePacket();
+        }
+      }
+    },50);
 
-    rpio.poll(DR, function() {
-          if (rpio.read(AM) === 1) {
-              self.receivePacket();
-          }
-    }, rpio.POLL_HIGH);
+    // rpio.poll(DR, function() {
+    //       if (rpio.read(AM) === 1) {
+    //           self.receivePacket();
+    //       }
+    // }, rpio.POLL_HIGH);
 
 };
 
