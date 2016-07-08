@@ -88,7 +88,7 @@ Nrf905.prototype.writeConfig = function(startByte, configArray) {
 
     rpio.write(CSN, 1);
     rpio.write(PWR, 1); //power up
-    this.startReceiveMode();
+
 };
 
 Nrf905.prototype.readConfig = function() {
@@ -124,19 +124,19 @@ Nrf905.prototype.startReceiveMode = function() {
 
     rpio.write(TRX_CE, 1);
 
-    setInterval(function() {
-      if (rpio.read(DR) === 1) {
-        if (rpio.read(AM) === 1) {
-            self.receivePacket();
-        }
-      }
-    },50);
+    // setInterval(function() {
+    //   if (rpio.read(DR) === 1) {
+    //     if (rpio.read(AM) === 1) {
+    //         self.receivePacket();
+    //     }
+    //   }
+    // },50);
 
-    // rpio.poll(DR, function() {
-    //       if (rpio.read(AM) === 1) {
-    //           self.receivePacket();
-    //       }
-    // }, rpio.POLL_HIGH);
+    rpio.poll(DR, function() {
+          if (rpio.read(AM) === 1) {
+              self.receivePacket();
+          }
+    }, rpio.POLL_HIGH);
 
 };
 
@@ -172,7 +172,7 @@ Nrf905.prototype.receivePacket = function() {
 
 };
 
-Nrf905.prototype.sendPacket = function(address, payloadString) {
+Nrf905.prototype.sendPacket = function(address, payloadString, callback) {
     var buffer = new Buffer(payloadString);
 
     //wait until the skies are clear and receiving is done
@@ -197,14 +197,19 @@ Nrf905.prototype.sendPacket = function(address, payloadString) {
 
     //pulse TRX_CE to enable sending
     rpio.write(TRX_CE, 1);
-
+    while (rpio.read(DR) === 0) {
+      rpio.msleep(1);
+    }; //wait until sent
     rpio.write(TRX_CE, 0);
-    while (rpio.read(DR) === 0); //wait until sent
-    console.log("packet sent");
+
+
 
     //reset in receive state
     rpio.write(TX_EN, 0);
     rpio.write(TRX_CE, 1);
+    if(callback !== undefined) {
+      callback(null, "success");
+    }
 };
 
 Nrf905.prototype.attachReceivedCallback = function(callback) {
