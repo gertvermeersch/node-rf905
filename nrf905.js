@@ -1,4 +1,5 @@
 var rpio = require('rpio');
+var sleep = require('sleep');
 
 
 /*
@@ -59,7 +60,7 @@ Nrf905.prototype.init = function() {
     //     console.log("AM: " + rpio.read(AM) + " DR: " + rpio.read(DR) + " CD: " + rpio.read(CD));
     // }, 50);
 
-    var configArray = [0xCE, 0x0D, 0x44, 0x20, 0x20, 0x00, 0x00, 0x00, 0x00, 0x58];
+    var configArray = [0x4C, 0x0C, 0x44, 0x20, 0x20, 0x00, 0x00, 0x00, 0x00, 0x58];
 
     if (this.address === undefined) {
         this.address = [0x00, 0x00, 0x00, 0x00];
@@ -197,19 +198,21 @@ Nrf905.prototype.sendPacket = function(address, payloadString, callback) {
 
     //pulse TRX_CE to enable sending
     rpio.write(TRX_CE, 1);
-    while (rpio.read(DR) === 0) {
-      rpio.msleep(1);
-    }; //wait until sent
-    rpio.write(TRX_CE, 0);
+    //var i = 0;
+    // while (rpio.read(DR) === 0 && i < 20) { //don't wait longer than 20ms
+    //sleep.usleep(1000);
+    //   i++;
+    // }; //wait until sent
+    setTimeout(function() {
+      rpio.write(TRX_CE, 0);
+      //reset in receive state
+      rpio.write(TX_EN, 0);
+      rpio.write(TRX_CE, 1);
+      if(callback !== undefined) {
+        callback(null, "success");
+      }
+    }, 1);
 
-
-
-    //reset in receive state
-    rpio.write(TX_EN, 0);
-    rpio.write(TRX_CE, 1);
-    if(callback !== undefined) {
-      callback(null, "success");
-    }
 };
 
 Nrf905.prototype.attachReceivedCallback = function(callback) {
